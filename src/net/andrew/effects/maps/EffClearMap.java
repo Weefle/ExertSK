@@ -1,4 +1,4 @@
-package net.andrew.effects;
+package net.andrew.effects.maps;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;

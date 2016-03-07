@@ -1,4 +1,4 @@
-package net.andrew.effects;
+package net.andrew.effects.maps;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
@@ -10,7 +10,7 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
-import net.andrew.utils.SetPixelMapUtil;
+import net.andrew.utils.maps.SetPixelMapUtil;
 
 public class EffMapSetPixel extends Effect{
 	//set pixel at %integer%, %integer% on map [with id] %integer% to [color] %string%

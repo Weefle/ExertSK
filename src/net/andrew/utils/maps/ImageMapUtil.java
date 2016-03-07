@@ -1,37 +1,37 @@
-package net.andrew.utils;
+package net.andrew.utils.maps;
+import java.awt.image.BufferedImage;
  
 import org.bukkit.entity.Player;
 import org.bukkit.map.MapCanvas;
 import org.bukkit.map.MapRenderer;
 import org.bukkit.map.MapView;
-import org.bukkit.map.MinecraftFont;
  
-public class TextMapUtil extends MapRenderer {
-    private String text;
+public class ImageMapUtil extends MapRenderer {
+    private BufferedImage image;
     private boolean rendered;
 	private Integer x1;
 	private Integer y1;
  
-    public TextMapUtil(String text, Integer x1, Integer y1) {
-        this.text = text;
+    public ImageMapUtil(BufferedImage image, Integer x1, Integer y1) {
+        this.image = image;
         this.x1 = x1;
         this.y1 = y1;
     }
  
     public void render(MapView mv, MapCanvas mc, Player p) {
-        if (rendered || text == null) {
+        if (rendered || image == null) {
             return;
         }
-        mc.drawText(x1, y1, MinecraftFont.Font, text);
+        mc.drawImage(x1, y1, image);
         rendered = true;
     }
  
-    public void setText(String text) {
-        this.text = text;
+    public void setImage(BufferedImage image) {
+        this.image = image;
         setRendered(false);
     }
-    public String getText() {
-        return this.text;
+    public BufferedImage getImage() {
+        return this.image;
     }
  
     public void setRendered(boolean rendered) {

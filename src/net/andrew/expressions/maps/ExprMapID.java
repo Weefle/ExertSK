@@ -1,4 +1,4 @@
-package net.andrew.expressions;
+package net.andrew.expressions.maps;
 
 import org.bukkit.event.Event;
 import javax.annotation.Nullable;

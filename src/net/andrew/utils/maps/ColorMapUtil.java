@@ -1,4 +1,4 @@
-package net.andrew.utils;
+package net.andrew.utils.maps;
 
 import org.bukkit.map.MapPalette;
 

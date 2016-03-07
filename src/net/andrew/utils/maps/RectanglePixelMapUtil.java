@@ -1,11 +1,10 @@
-package net.andrew.utils;
-import net.andrew.utils.ColorMapUtil;
-
-
+package net.andrew.utils.maps;
 import org.bukkit.entity.Player;
 import org.bukkit.map.MapCanvas;
 import org.bukkit.map.MapRenderer;
 import org.bukkit.map.MapView;
+
+import net.andrew.utils.maps.ColorMapUtil;
  
 public class RectanglePixelMapUtil extends MapRenderer {
     private boolean rendered;

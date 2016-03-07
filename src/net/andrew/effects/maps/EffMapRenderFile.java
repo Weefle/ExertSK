@@ -1,9 +1,10 @@
-package net.andrew.effects;
+package net.andrew.effects.maps;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.event.Event;
+import org.bukkit.map.MapPalette;
 import org.bukkit.map.MapView;
 
 
@@ -18,7 +19,7 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
-import net.andrew.utils.ImageMapUtil;
+import net.andrew.utils.maps.ImageMapUtil;
 public class EffMapRenderFile extends Effect{
 	//render image from FILE %string% on map [with id] %integer% [starting at %integer%, %integer%]
 	private Expression<Number> MapID;
@@ -28,11 +29,13 @@ public class EffMapRenderFile extends Effect{
 	private static Expression<Number> y;
 	private static Integer x1 = 0;
 	private static Integer y1 = 0;
+	private static Integer alias = 0;
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean init(Expression<?>[] expr, int paramInt, Kleenean paramKleenean, ParseResult paramParseResult) {
+	public boolean init(Expression<?>[] expr, int i, Kleenean paramKleenean, ParseResult paramParseResult) {
 		MapID = (Expression<Number>) expr[1];
 		FileURL = (Expression<String>) expr[0];
+		EffMapRenderFile.alias = i;
 		if (expr[2] != null){
 			EffMapRenderFile.x = (Expression<Number>) expr[2];
 			EffMapRenderFile.y = (Expression<Number>) expr[3];	
@@ -58,6 +61,9 @@ public class EffMapRenderFile extends Effect{
 		} catch (IOException e2) {
 			ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 			console.sendMessage("[ExterSK] " + ChatColor.RED + "Could not load from FILE " + ChatColor.GREEN + FileURL.getSingle(e).toString() + " " + ChatColor.GOLD + e2.getMessage() + ChatColor.RESET);
+		}
+		if (EffMapRenderFile.alias == 1){
+			image = MapPalette.resizeImage(image);
 		}
 		map.addRenderer(new ImageMapUtil(image, x1, y1));
 	}

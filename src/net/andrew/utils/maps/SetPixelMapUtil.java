@@ -1,4 +1,4 @@
-package net.andrew.utils;
+package net.andrew.utils.maps;
  
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

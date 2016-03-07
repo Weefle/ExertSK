@@ -1,6 +1,4 @@
-package net.andrew.utils;
-import net.andrew.utils.ColorMapUtil;
-
+package net.andrew.utils.maps;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +6,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.map.MapCanvas;
 import org.bukkit.map.MapRenderer;
 import org.bukkit.map.MapView;
+
+import net.andrew.utils.maps.ColorMapUtil;
  
 public class BorderRectanglePixelMapUtil extends MapRenderer {
     private boolean rendered;
