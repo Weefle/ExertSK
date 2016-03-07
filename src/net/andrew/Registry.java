@@ -22,6 +22,7 @@ import net.andrew.effects.maps.EffMapRenderURL;
 import net.andrew.effects.maps.EffMapSetLine;
 import net.andrew.effects.maps.EffMapSetPixel;
 import net.andrew.effects.maps.EffMapSetRect;
+import net.andrew.effects.random.EffForceRespawn;
 import net.andrew.expressions.maps.ExprMapID;
 import net.andrew.expressions.mcmmo.ExprMcMMOSkill;
 import net.andrew.expressions.mcmmo.ExprRawXPLevel;
@@ -118,6 +119,8 @@ public class Registry {
 		
 		
 	}
-		
+	public static void Random(){
+		Skript.registerEffect(EffForceRespawn.class, "[exter] force respawn %player%");
+	}
 }
 

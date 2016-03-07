@@ -24,11 +24,7 @@ public class SetPixelMapUtil extends MapRenderer {
     	if (rendered || color == null) {
             return;
         }
-        new Thread() {
-            public void run() {
-            	mc.setPixel(x1, y1, ColorMapUtil.minecraftColorFromString(color));
-            }
-        }.start();        
+    	mc.setPixel(x1, y1, ColorMapUtil.minecraftColorFromString(color));        
         rendered = true;
     }
  

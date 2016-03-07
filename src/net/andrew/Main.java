@@ -35,10 +35,13 @@ import net.andrew.utils.maps.ColorMapUtil;
 @SuppressWarnings("unused")
 public class Main extends JavaPlugin{
 	private FileConfiguration config;
+	private static Main instance;
+	public static Main inst() {
+		  return instance;
+		}
 	@Override
 	public void onEnable(){
-		
-		
+		instance = this;
 		this.config = this.getConfig();
 		saveDefaultConfig();
 		Config.start(this.config);
@@ -53,18 +56,21 @@ public class Main extends JavaPlugin{
 	        log.severe("Could not enable metrics. Not trying again" + ChatColor.RESET);
 	    }
 	    
-	    
 		if (Bukkit.getPluginManager().getPlugin("Skript") != null) {
 		    //SKRIPT REGISTERING
 			Skript.registerAddon(this);
 			Registry.SkriptMaps();
+			Registry.Random();
+			Plugin mcMMO = Bukkit.getServer().getPluginManager().getPlugin("mcMMO");
+			if (mcMMO != null) {
+				getLogger().info("Hooked into mcMMO");
+				Registry.mcMMO(mcMMO);
+			}
 		}
-		
-		Plugin mcMMO = Bukkit.getServer().getPluginManager().getPlugin("mcMMO");
-		if (mcMMO != null) {
-			getLogger().info("Hooked into mcMMO");
-			Registry.mcMMO(mcMMO);
+		else{
+			getLogger().warning("How is this plugin still running?");
 		}
+
 		
 	}
 }
