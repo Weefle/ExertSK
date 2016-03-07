@@ -63,7 +63,7 @@ public class Main extends JavaPlugin{
 			Registry.Random();
 			Plugin mcMMO = Bukkit.getServer().getPluginManager().getPlugin("mcMMO");
 			if (mcMMO != null) {
-				getLogger().info("Hooked into mcMMO");
+				getLogger().info("Hooked into mcMMO. Hi mcMMO!");
 				Registry.mcMMO(mcMMO);
 			}
 		}

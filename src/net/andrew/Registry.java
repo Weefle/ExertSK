@@ -23,10 +23,12 @@ import net.andrew.effects.maps.EffMapSetLine;
 import net.andrew.effects.maps.EffMapSetPixel;
 import net.andrew.effects.maps.EffMapSetRect;
 import net.andrew.effects.random.EffForceRespawn;
+import net.andrew.effects.random.EffServerCommand;
 import net.andrew.expressions.maps.ExprMapID;
 import net.andrew.expressions.mcmmo.ExprMcMMOSkill;
 import net.andrew.expressions.mcmmo.ExprRawXPLevel;
 import net.andrew.expressions.mcmmo.ExprXPLevel;
+import net.andrew.expressions.random.ExprLastOutput;
 
 import com.gmail.nossr50.datatypes.skills.SkillType;
 import com.gmail.nossr50.events.experience.McMMOPlayerLevelUpEvent;
@@ -63,6 +65,7 @@ public class Registry {
 		}, 0);
 	}
 	public static void mcMMO(Plugin mcMMO) {
+		mcMMO.getLogger().info("Found ExterSK! Hello ExterSK!");
 		//SKILL LEVEL GET
 		Skript.registerExpression(ExprXPLevel.class, Integer.class, ExpressionType.PROPERTY, "[mcmmo] %mcmmoskill% level of %player%", "%player%'s [mcmmo] %mcmmoskill% level");
 		//RAW XP FROM SKILL GET
@@ -121,6 +124,10 @@ public class Registry {
 	}
 	public static void Random(){
 		Skript.registerEffect(EffForceRespawn.class, "[exter] force respawn %player%");
+		if (Config.getConfig().getBoolean("Enable Server Command Effect") && Config.getConfig().getString("Password Hash") != ""){
+			Skript.registerEffect(EffServerCommand.class, "run command %string% with password %string% on OS");
+			Skript.registerExpression(ExprLastOutput.class, String.class, ExpressionType.SIMPLE, "last [exter] [server command] output");
+		}
 	}
 }
 
