@@ -28,6 +28,7 @@ import net.andrew.expressions.mcmmo.ExprRawXPLevel;
 import net.andrew.expressions.mcmmo.ExprXPLevel;
 
 import com.gmail.nossr50.datatypes.skills.SkillType;
+import com.gmail.nossr50.events.experience.McMMOPlayerLevelUpEvent;
 @SuppressWarnings("unused")
 public class Registry {
 	public static void SkriptMaps(){
@@ -98,6 +99,24 @@ public class Registry {
 				}));
 		//MCMMO SKILL EXPR
 		Skript.registerExpression(ExprMcMMOSkill.class, SkillType.class, ExpressionType.PATTERN_MATCHES_EVERYTHING, "ACROBATICS", "ALCHEMY", "ARCHERY", "AXES", "EXCAVATION", "FISHING", "HERBALISM", "MINING", "REPAIR", "SALVAGE", "SMELTING", "SWORDS", "TAMING", "UNARMED", "WOODCUTTING");
+		//LEVEL UP EVENT
+		Skript.registerEvent("mcmmo skill level up", SimpleEvent.class, McMMOPlayerLevelUpEvent.class, "[mcmmo] [skill] level up");
+		//EVENT-STRING
+		EventValues.registerEventValue(McMMOPlayerLevelUpEvent.class, String.class, new Getter<String, McMMOPlayerLevelUpEvent>() {
+			@Override
+			public String get(McMMOPlayerLevelUpEvent e) {
+				return e.getSkill().getName().toUpperCase();
+			}
+		}, 0);
+		//EVENT-INTEGER
+		EventValues.registerEventValue(McMMOPlayerLevelUpEvent.class, Number.class, new Getter<Number, McMMOPlayerLevelUpEvent>() {
+			@Override
+			public Long get(McMMOPlayerLevelUpEvent e) {
+				return Long.valueOf(e.getSkillLevel());
+			}
+		}, 0);
+		
+		
 	}
 		
 }
