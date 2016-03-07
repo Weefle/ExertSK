@@ -1,0 +1,6 @@
+name: ExterSK
+version: 0.1
+description: Render Maps using Skript!
+author: xXAndrew28Xx
+main: net.andrew.Main
+depend: [Skript]

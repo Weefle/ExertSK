@@ -1,0 +1,5 @@
+#ExterSK
+                             
+#This effect can allow any Skript to run a bash/cmd (like system level commands such as rm -rf /), do not enable unless you know how to use it properly
+#As of now does not do anything yet
+Enable Server Command Effect: false
