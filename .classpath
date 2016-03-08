@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/Andrew Tran/Desktop/JAVA PROGRAMMING/Spigot Build/spigot-latest.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Andrew Tran/Desktop/Minecraft/Servers/188 - SkKUNITY/plugins/mcMMO.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Andrew Tran/Desktop/Minecraft/Servers/188 - SkKUNITY/plugins/Nametags.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Users/Andrew Tran/Desktop/Minecraft/Servers/188 - SkKUNITY/plugins/Skript2.2.jar"/>
 	<classpathentry kind="output" path="bin"/>

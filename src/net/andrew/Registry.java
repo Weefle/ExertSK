@@ -28,7 +28,10 @@ import net.andrew.expressions.maps.ExprMapID;
 import net.andrew.expressions.mcmmo.ExprMcMMOSkill;
 import net.andrew.expressions.mcmmo.ExprRawXPLevel;
 import net.andrew.expressions.mcmmo.ExprXPLevel;
+import net.andrew.expressions.nametags.ExprNameTag;
 import net.andrew.expressions.random.ExprLastOutput;
+import xyz.flarereturns.nametags.api.API;
+import xyz.flarereturns.nametags.api.Nametags;
 
 import com.gmail.nossr50.datatypes.skills.SkillType;
 import com.gmail.nossr50.events.experience.McMMOPlayerLevelUpEvent;
@@ -119,8 +122,13 @@ public class Registry {
 				return Long.valueOf(e.getSkillLevel());
 			}
 		}, 0);
-		
-		
+	}
+	public static void nameTags(Plugin nt){
+		nt.getLogger().info("I was expecting you ExertSK!");
+		Skript.registerExpression(ExprNameTag.class, String.class, ExpressionType.PROPERTY, "[exter] [nametag][s] prefix of %player%", "%player%'s [exter] [nametag][s] prefix", "[exter] [nametag][s] suffix of %player%", "%player%'s [exter] [nametag][s] suffix");
+	}
+	public static API nameTagsAPI(){
+		return Nametags.getAPI();
 	}
 	public static void Random(){
 		Skript.registerEffect(EffForceRespawn.class, "[exter] force respawn %player%");

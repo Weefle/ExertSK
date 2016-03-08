@@ -1,7 +1,7 @@
 name: ExterSK
-version: 0.0.2b
+version: 0.0.3
 description: Render Maps using Skript!
 author: xXAndrew28Xx
 main: net.andrew.Main
-softdepend: [McMMO]
+softdepend: [McMMO, Nametags]
 depend: [Skript]

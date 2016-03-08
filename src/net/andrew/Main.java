@@ -62,9 +62,14 @@ public class Main extends JavaPlugin{
 			Registry.SkriptMaps();
 			Registry.Random();
 			Plugin mcMMO = Bukkit.getServer().getPluginManager().getPlugin("mcMMO");
+			Plugin NameTags = Bukkit.getServer().getPluginManager().getPlugin("Nametags");
 			if (mcMMO != null) {
 				getLogger().info("Hooked into mcMMO. Hi mcMMO!");
 				Registry.mcMMO(mcMMO);
+			}
+			if (NameTags != null){
+				getLogger().info("Hooked into Nametags!");
+				Registry.nameTags(NameTags);
 			}
 		}
 		else{
