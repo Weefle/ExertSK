@@ -37,7 +37,6 @@ import net.andrew.expressions.mcmmo.ExprXPLevel;
 import net.andrew.expressions.nametags.ExprNameTag;
 import net.andrew.expressions.random.ExprHastebin;
 import net.andrew.expressions.random.ExprLastOutput;
-import net.andrew.expressions.random.ExprPlayerWeather;
 import xyz.flarereturns.nametags.api.API;
 import xyz.flarereturns.nametags.api.Nametags;
 
@@ -152,33 +151,9 @@ public class Registry {
 			Skript.registerEffect(EffServerCommand.class, "run command %string% with password %string% on OS");
 			Skript.registerEffect(EffSetSpectateTarget.class, "make %player% spectate %entity%");
 			Skript.registerExpression(ExprLastOutput.class, String.class, ExpressionType.SIMPLE, "last [exter] [server command] output");
-			Classes.registerClass(new ClassInfo<WeatherType>(WeatherType.class, "weather")
-					.name("weather").parser(new Parser<WeatherType>() {
-
-						@Override
-						public String getVariableNamePattern() {
-							return ".+";
-						}
-
-						@Override
-						@javax.annotation.Nullable
-						public WeatherType parse(String text, ParseContext arg1) {
-							return WeatherType.valueOf(text);
-						}
-
-						@Override
-						public String toString(WeatherType t, int arg1) {
-							return t.toString();
-						}
-
-						@Override
-						public String toVariableNameString(WeatherType t) {
-							return t.toString();
-						}
-						
-					}));
-			Skript.registerExpression(ExprPlayerWeather.class, WeatherType.class, ExpressionType.PROPERTY, "[personal] weather of %player%", "%player%'s personal weather");
+			
 		}
+
 	}
 }
 
