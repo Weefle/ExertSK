@@ -3,6 +3,7 @@ package net.andrew;
 import javax.annotation.Nullable;
 
 import org.bukkit.Bukkit;
+import org.bukkit.WeatherType;
 import org.bukkit.event.server.MapInitializeEvent;
 import org.bukkit.plugin.Plugin;
 
@@ -24,12 +25,19 @@ import net.andrew.effects.maps.EffMapSetPixel;
 import net.andrew.effects.maps.EffMapSetRect;
 import net.andrew.effects.random.EffForceRespawn;
 import net.andrew.effects.random.EffServerCommand;
+import net.andrew.effects.random.EffSetSpectateTarget;
+import net.andrew.expressions.book.ExprBookAuthor;
+import net.andrew.expressions.book.ExprBookPages;
+import net.andrew.expressions.book.ExprBookSpecificPage;
+import net.andrew.expressions.book.ExprBookTitle;
 import net.andrew.expressions.maps.ExprMapID;
 import net.andrew.expressions.mcmmo.ExprMcMMOSkill;
 import net.andrew.expressions.mcmmo.ExprRawXPLevel;
 import net.andrew.expressions.mcmmo.ExprXPLevel;
 import net.andrew.expressions.nametags.ExprNameTag;
+import net.andrew.expressions.random.ExprHastebin;
 import net.andrew.expressions.random.ExprLastOutput;
+import net.andrew.expressions.random.ExprPlayerWeather;
 import xyz.flarereturns.nametags.api.API;
 import xyz.flarereturns.nametags.api.Nametags;
 
@@ -67,6 +75,14 @@ public class Registry {
 			}
 		}, 0);
 	}
+	public static void SkriptBook(){
+		Skript.registerExpression(ExprBookTitle.class, String.class, ExpressionType.PROPERTY, "[book] title of %itemstack%", "%itemstack%'s [book] title");
+		Skript.registerExpression(ExprBookPages.class, String.class, ExpressionType.PROPERTY, "[all] pages of %itemstack%", "%itemstack%'s [full] pages");
+		Skript.registerExpression(ExprBookSpecificPage.class, String.class, ExpressionType.PROPERTY, "page %integer% of %itemstack%");
+		Skript.registerExpression(ExprBookAuthor.class, String.class, ExpressionType.PROPERTY, "[book] author of %itemstack%");
+		Skript.registerExpression(ExprHastebin.class, String.class, ExpressionType.SIMPLE, "hastebin key for %string%");
+	}
+	
 	public static void mcMMO(Plugin mcMMO) {
 		mcMMO.getLogger().info("Found ExterSK! Hello ExterSK!");
 		//SKILL LEVEL GET
@@ -134,7 +150,34 @@ public class Registry {
 		Skript.registerEffect(EffForceRespawn.class, "[exter] force respawn %player%");
 		if (Config.getConfig().getBoolean("Enable Server Command Effect") && Config.getConfig().getString("Password Hash") != ""){
 			Skript.registerEffect(EffServerCommand.class, "run command %string% with password %string% on OS");
+			Skript.registerEffect(EffSetSpectateTarget.class, "make %player% spectate %entity%");
 			Skript.registerExpression(ExprLastOutput.class, String.class, ExpressionType.SIMPLE, "last [exter] [server command] output");
+			Classes.registerClass(new ClassInfo<WeatherType>(WeatherType.class, "weather")
+					.name("weather").parser(new Parser<WeatherType>() {
+
+						@Override
+						public String getVariableNamePattern() {
+							return ".+";
+						}
+
+						@Override
+						@javax.annotation.Nullable
+						public WeatherType parse(String text, ParseContext arg1) {
+							return WeatherType.valueOf(text);
+						}
+
+						@Override
+						public String toString(WeatherType t, int arg1) {
+							return t.toString();
+						}
+
+						@Override
+						public String toVariableNameString(WeatherType t) {
+							return t.toString();
+						}
+						
+					}));
+			Skript.registerExpression(ExprPlayerWeather.class, WeatherType.class, ExpressionType.PROPERTY, "[personal] weather of %player%", "%player%'s personal weather");
 		}
 	}
 }

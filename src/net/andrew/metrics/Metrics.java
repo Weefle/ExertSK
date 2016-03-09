@@ -46,7 +46,7 @@ public class Metrics {
     /**
      * The url used to report a server's status
      */
-    private static final String REPORT_URL = "/plugin/ExterSK";
+    private static final String REPORT_URL = "/plugin/ExertSK";
 
     /**
      * Interval of time to ping (in minutes)

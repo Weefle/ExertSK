@@ -60,6 +60,7 @@ public class Main extends JavaPlugin{
 		    //SKRIPT REGISTERING
 			Skript.registerAddon(this);
 			Registry.SkriptMaps();
+			Registry.SkriptBook();
 			Registry.Random();
 			Plugin mcMMO = Bukkit.getServer().getPluginManager().getPlugin("mcMMO");
 			Plugin NameTags = Bukkit.getServer().getPluginManager().getPlugin("Nametags");
