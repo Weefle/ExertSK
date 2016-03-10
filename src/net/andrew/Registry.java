@@ -153,6 +153,7 @@ public class Registry {
 			Skript.registerExpression(ExprLastOutput.class, String.class, ExpressionType.SIMPLE, "last [exter] [server command] output");
 			
 		}
+		Skript.registerExpression(ExprHastebin.class, String.class, ExpressionType.PROPERTY, "[new] hastebin (key|identifier) (for|of) [text|string] %string%", "[new] hastebin URL (for|of) [text|string] %string%");
 
 	}
 }
