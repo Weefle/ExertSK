@@ -87,7 +87,6 @@ public class ExprHastebin extends SimpleExpression<String>{
 			    result.append(line);
 			}
 			String[] split1 = result.toString().split(":");
-			Main.inst().getLogger().warning("NOPE:" + split1[1]);
 			String str = split1[1].replace("\"", "");
 			str = str.replace("}", "");
 			if (label == 1)
