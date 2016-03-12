@@ -31,6 +31,7 @@ import net.andrew.effects.maps.EffMapSetRect;
 import net.andrew.expressions.maps.ExprMapID;
 import net.andrew.metrics.Metrics;
 import net.andrew.utils.maps.ColorMapUtil;
+import net.andrew.utils.random.Lag;
 
 @SuppressWarnings("unused")
 public class Main extends JavaPlugin{
@@ -46,7 +47,7 @@ public class Main extends JavaPlugin{
 		saveDefaultConfig();
 		Config.start(this.config);
 		Logger log = this.getLogger();
-		
+		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
 		
 	    try {
 	        Metrics metrics = new Metrics(this);

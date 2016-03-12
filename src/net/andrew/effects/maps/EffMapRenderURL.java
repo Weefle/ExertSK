@@ -60,7 +60,7 @@ public class EffMapRenderURL extends Effect{
 			image = ImageIO.read(new URL(url));
 		} catch (IOException e2) {
 			ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
-			console.sendMessage("[ExterSK] " + ChatColor.RED + "Could not load from URL " + ChatColor.GREEN + URL.getSingle(e).toString() + " " + ChatColor.GOLD + e2.getMessage() + ChatColor.RESET);
+			console.sendMessage("[ExterSK] " + ChatColor.RED + "Could not run effect render image from URL " + ChatColor.GREEN + URL.getSingle(e).toString() + " " + ChatColor.GOLD + e2.getMessage() + ChatColor.RESET);
 			return;
 		}
 		if (EffMapRenderURL.alias == 1){

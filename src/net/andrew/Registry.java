@@ -4,6 +4,8 @@ import javax.annotation.Nullable;
 
 import org.bukkit.Bukkit;
 import org.bukkit.WeatherType;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryCreativeEvent;
 import org.bukkit.event.server.MapInitializeEvent;
 import org.bukkit.plugin.Plugin;
 
@@ -23,7 +25,10 @@ import net.andrew.effects.maps.EffMapRenderURL;
 import net.andrew.effects.maps.EffMapSetLine;
 import net.andrew.effects.maps.EffMapSetPixel;
 import net.andrew.effects.maps.EffMapSetRect;
+import net.andrew.effects.random.EffChatImageFromFILE;
+import net.andrew.effects.random.EffChatImageFromURL;
 import net.andrew.effects.random.EffForceRespawn;
+import net.andrew.effects.random.EffLeashFence;
 import net.andrew.effects.random.EffServerCommand;
 import net.andrew.effects.random.EffSetSpectateTarget;
 import net.andrew.expressions.book.ExprBookAuthor;
@@ -37,6 +42,7 @@ import net.andrew.expressions.mcmmo.ExprXPLevel;
 import net.andrew.expressions.nametags.ExprNameTag;
 import net.andrew.expressions.random.ExprHastebin;
 import net.andrew.expressions.random.ExprLastOutput;
+import net.andrew.expressions.random.ExprTPS;
 import xyz.flarereturns.nametags.api.API;
 import xyz.flarereturns.nametags.api.Nametags;
 
@@ -149,12 +155,15 @@ public class Registry {
 		Skript.registerEffect(EffForceRespawn.class, "[exter] force respawn %player%");
 		if (Config.getConfig().getBoolean("Enable Server Command Effect") && Config.getConfig().getString("Password Hash") != ""){
 			Skript.registerEffect(EffServerCommand.class, "run command %string% with password %string% on OS");
-			Skript.registerEffect(EffSetSpectateTarget.class, "make %player% spectate %entity%");
 			Skript.registerExpression(ExprLastOutput.class, String.class, ExpressionType.SIMPLE, "last [exter] [server command] output");
 			
 		}
+		Skript.registerEffect(EffSetSpectateTarget.class, "make %player% spectate %entity%");
+		Skript.registerExpression(ExprTPS.class, Number.class, ExpressionType.SIMPLE, "[exter] [server] tps");
 		Skript.registerExpression(ExprHastebin.class, String.class, ExpressionType.PROPERTY, "[new] hastebin (key|identifier) (for|of) [text|string] %string%", "[new] hastebin URL (for|of) [text|string] %string%");
-
+		Skript.registerEffect(EffChatImageFromURL.class, "send %players% [chat] image from url %string% with height %integer%[,] shade %integer%", "send %players% [chat] image from url %string% with height %integer%[,] shade %integer% with extra texts %strings%");
+		Skript.registerEffect(EffChatImageFromFILE.class, "send %players% [chat] image from file %string% with height %integer%[,] shade %integer%", "send %players% [chat] image from file %string% with height %integer%[,] shade %integer% with extra texts %strings%");
+		Skript.registerEffect(EffLeashFence.class, "(leash|lead) %livingentities% to %block%");
 	}
 }
 
