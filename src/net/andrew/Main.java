@@ -2,38 +2,15 @@ package net.andrew;
 
 import java.io.IOException;
 import java.util.logging.Logger;
-import javax.annotation.Nullable;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.event.server.MapInitializeEvent;
-import org.bukkit.map.MapPalette;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import ch.njol.skript.Skript;
-import ch.njol.skript.classes.ClassInfo;
-import ch.njol.skript.classes.Parser;
-import ch.njol.skript.lang.ExpressionType;
-import ch.njol.skript.lang.ParseContext;
-import ch.njol.skript.lang.util.SimpleEvent;
-import ch.njol.skript.registrations.Classes;
-import ch.njol.skript.registrations.EventValues;
-import ch.njol.skript.util.Getter;
-import net.andrew.effects.maps.EffClearMap;
-import net.andrew.effects.maps.EffMapRenderFile;
-import net.andrew.effects.maps.EffMapRenderText;
-import net.andrew.effects.maps.EffMapRenderURL;
-import net.andrew.effects.maps.EffMapSetBorderRect;
-import net.andrew.effects.maps.EffMapSetLine;
-import net.andrew.effects.maps.EffMapSetPixel;
-import net.andrew.effects.maps.EffMapSetRect;
-import net.andrew.expressions.maps.ExprMapID;
 import net.andrew.metrics.Metrics;
-import net.andrew.utils.maps.ColorMapUtil;
 import net.andrew.utils.random.Lag;
 
-@SuppressWarnings("unused")
 public class Main extends JavaPlugin{
 	private FileConfiguration config;
 	private static Main instance;
@@ -48,7 +25,6 @@ public class Main extends JavaPlugin{
 		Config.start(this.config);
 		Logger log = this.getLogger();
 		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
-		
 	    try {
 	        Metrics metrics = new Metrics(this);
 	        metrics.start();
@@ -60,11 +36,11 @@ public class Main extends JavaPlugin{
 		if (Bukkit.getPluginManager().getPlugin("Skript") != null) {
 		    //SKRIPT REGISTERING
 			Skript.registerAddon(this);
-			Registry.SkriptMaps();
 			Registry.SkriptBook();
 			Registry.Random();
 			Plugin mcMMO = Bukkit.getServer().getPluginManager().getPlugin("mcMMO");
 			Plugin NameTags = Bukkit.getServer().getPluginManager().getPlugin("Nametags");
+			Plugin Consoles = Bukkit.getServer().getPluginManager().getPlugin("ConsolesCore");
 			if (mcMMO != null) {
 				getLogger().info("Hooked into mcMMO. Hi mcMMO!");
 				Registry.mcMMO(mcMMO);
@@ -72,6 +48,10 @@ public class Main extends JavaPlugin{
 			if (NameTags != null){
 				getLogger().info("Hooked into Nametags!");
 				Registry.nameTags(NameTags);
+			}
+			if (Consoles != null){
+				getLogger().info("Hooked into ConsolesCore! Do you have map support?");
+				Registry.consoles(Consoles);
 			}
 		}
 		else{

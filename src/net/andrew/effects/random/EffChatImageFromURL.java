@@ -48,9 +48,6 @@ public class EffChatImageFromURL extends Effect{
 	@Override
 	protected void execute(Event e) {
 		// TODO Auto-generated method stub
-		
-		Thread t1 = new Thread(new Runnable() {
-            public void run() {
             	try {
             		Integer shade = EffChatImageFromURL.shade.getSingle(e);
             		if (shade == 0){
@@ -100,9 +97,6 @@ public class EffChatImageFromURL extends Effect{
         			e1.printStackTrace(pw);
         			Main.inst().getLogger().warning(sw.toString()); // stack trace as a string
         		}
-            }
-       }); 
-       t1.start();
 	}
 
 }

@@ -1,7 +1,7 @@
 name: ExertSK
-version: 0.1.0
+version: 0.1.1
 description: Adds many more useful effects in to Skript
 author: xXAndrew28Xx
 main: net.andrew.Main
-softdepend: [McMMO, Nametags]
+softdepend: [McMMO, Nametags, ConsolesCore]
 depend: [Skript]

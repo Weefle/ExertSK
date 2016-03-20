@@ -4,9 +4,11 @@ import javax.annotation.Nullable;
 
 import org.bukkit.Bukkit;
 import org.bukkit.WeatherType;
+import org.bukkit.block.BlockFace;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryCreativeEvent;
 import org.bukkit.event.server.MapInitializeEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 import ch.njol.skript.Skript;
@@ -18,13 +20,14 @@ import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
-import net.andrew.effects.maps.EffClearMap;
-import net.andrew.effects.maps.EffMapRenderFile;
-import net.andrew.effects.maps.EffMapRenderText;
-import net.andrew.effects.maps.EffMapRenderURL;
-import net.andrew.effects.maps.EffMapSetLine;
-import net.andrew.effects.maps.EffMapSetPixel;
-import net.andrew.effects.maps.EffMapSetRect;
+import net.andrew.effects.consoles.EffSetPixel;
+import net.andrew.effects.consoles.EffDrawLine;
+import net.andrew.effects.consoles.EffDrawText;
+import net.andrew.effects.consoles.EffGIFConsole;
+import net.andrew.effects.consoles.EffImageConsole;
+import net.andrew.effects.consoles.EffRemoveConsole;
+import net.andrew.effects.consoles.EffSetBackConsole;
+import net.andrew.effects.consoles.EffUpdateConsole;
 import net.andrew.effects.random.EffChatImageFromFILE;
 import net.andrew.effects.random.EffChatImageFromURL;
 import net.andrew.effects.random.EffForceRespawn;
@@ -35,12 +38,14 @@ import net.andrew.expressions.book.ExprBookAuthor;
 import net.andrew.expressions.book.ExprBookPages;
 import net.andrew.expressions.book.ExprBookSpecificPage;
 import net.andrew.expressions.book.ExprBookTitle;
+import net.andrew.expressions.consoles.ExprNewConsole;
 import net.andrew.expressions.maps.ExprMapID;
 import net.andrew.expressions.mcmmo.ExprMcMMOSkill;
 import net.andrew.expressions.mcmmo.ExprRawXPLevel;
 import net.andrew.expressions.mcmmo.ExprXPLevel;
 import net.andrew.expressions.nametags.ExprNameTag;
 import net.andrew.expressions.random.ExprHastebin;
+import net.andrew.expressions.random.ExprIWItemFrame;
 import net.andrew.expressions.random.ExprLastOutput;
 import net.andrew.expressions.random.ExprTPS;
 import xyz.flarereturns.nametags.api.API;
@@ -48,44 +53,15 @@ import xyz.flarereturns.nametags.api.Nametags;
 
 import com.gmail.nossr50.datatypes.skills.SkillType;
 import com.gmail.nossr50.events.experience.McMMOPlayerLevelUpEvent;
+
+import ca.jarcode.consoles.api.Console;
 @SuppressWarnings("unused")
 public class Registry {
-	public static void SkriptMaps(){
-		//CLEAR MAP
-		Skript.registerEffect(EffClearMap.class, "clear map %integer%");
-		//RENDER IMAGE FROM URL
-		Skript.registerEffect(EffMapRenderURL.class, "render image from url %string% on map [with id] %integer% [starting at %integer%, %integer%]", "render resized image from url %string% on map [with id] %integer% [starting at %integer%, %integer%]");
-		//RENDER IMAGE FROM FILE
-		Skript.registerEffect(EffMapRenderFile.class, "render image from file %string% on map [with id] %integer% [starting at %integer%, %integer%]", "render resized image from file %string% on map [with id] %integer% [starting at %integer%, %integer%]");
-		//RENDER IMAGE FROM FILE
-		Skript.registerEffect(EffMapRenderText.class, "render text %string% on map [with id] %integer% [starting at %integer%, %integer%]");
-		//SET PIXEL ON MAP TO "COLOR"
-		Skript.registerEffect(EffMapSetPixel.class, "set pixel at %integer%[,] %integer% on map [with id] %integer% to [color] %string%");
-		//DRAW LINE ON MAP WITH COLOR
-		Skript.registerEffect(EffMapSetLine.class, "draw line from %integer%[,] %integer% to %integer%[,] %integer% on map [with id] %integer% with [color] %string%");
-		//DRAW RECTANGLE ON MAP WITH COLOR
-		Skript.registerEffect(EffMapSetRect.class, "draw rectangle from %integer%[,] %integer% to %integer%[,] %integer% on map [with id] %integer% with [color] %string%");
-		//DRAW RECTANGLE BORDER ON MAP WITH COLOR
-		//Skript.registerEffect(EffMapSetBorderRect.class, "draw rect[angle] border from %integer%[,] %integer% to %integer%[,] %integer% on map [with id] %integer% with [color] %string%");
-		//MAP ID EXPR
-		Skript.registerExpression(ExprMapID.class, Integer.class, ExpressionType.PROPERTY, "map id of %itemstack%", "%itemstack%'s map id");
-		//MAP INIT EVT
-		Skript.registerEvent("Map Initialize", SimpleEvent.class, MapInitializeEvent.class, "map initialize", "map init");
-		//EVENT-INTEGER
-		EventValues.registerEventValue(MapInitializeEvent.class, Number.class, new Getter<Number, MapInitializeEvent>() {
-			@Override
-			@SuppressWarnings("deprecation")
-			public Long get(MapInitializeEvent e) {
-				return Long.valueOf(e.getMap().getId());
-			}
-		}, 0);
-	}
 	public static void SkriptBook(){
 		Skript.registerExpression(ExprBookTitle.class, String.class, ExpressionType.PROPERTY, "[book] title of %itemstack%", "%itemstack%'s [book] title");
 		Skript.registerExpression(ExprBookPages.class, String.class, ExpressionType.PROPERTY, "[all] pages of %itemstack%", "%itemstack%'s [full] pages");
 		Skript.registerExpression(ExprBookSpecificPage.class, String.class, ExpressionType.PROPERTY, "page %integer% of %itemstack%");
-		Skript.registerExpression(ExprBookAuthor.class, String.class, ExpressionType.PROPERTY, "[book] author of %itemstack%");
-		Skript.registerExpression(ExprHastebin.class, String.class, ExpressionType.SIMPLE, "hastebin key for %string%");
+		Skript.registerExpression(ExprBookAuthor.class, String.class, ExpressionType.PROPERTY, "[book] author of %itemstack%", "%itemstack%'s [book] author");
 	}
 	
 	public static void mcMMO(Plugin mcMMO) {
@@ -161,9 +137,42 @@ public class Registry {
 		Skript.registerEffect(EffSetSpectateTarget.class, "make %player% spectate %entity%");
 		Skript.registerExpression(ExprTPS.class, Number.class, ExpressionType.SIMPLE, "[exter] [server] tps");
 		Skript.registerExpression(ExprHastebin.class, String.class, ExpressionType.PROPERTY, "[new] hastebin (key|identifier) (for|of) [text|string] %string%", "[new] hastebin URL (for|of) [text|string] %string%");
+		Skript.registerExpression(ExprIWItemFrame.class, ItemStack.class, ExpressionType.SIMPLE, "[exert] item [with]in %entity%");
 		Skript.registerEffect(EffChatImageFromURL.class, "send %players% [chat] image from url %string% with height %integer%[,] shade %integer%", "send %players% [chat] image from url %string% with height %integer%[,] shade %integer% with extra texts %strings%");
 		Skript.registerEffect(EffChatImageFromFILE.class, "send %players% [chat] image from file %string% with height %integer%[,] shade %integer%", "send %players% [chat] image from file %string% with height %integer%[,] shade %integer% with extra texts %strings%");
 		Skript.registerEffect(EffLeashFence.class, "(leash|lead) %livingentities% to %block%");
+	}
+	public static void consoles(Plugin c){
+		c.getLogger().info("Yes!!!");
+		Skript.registerExpression(ExprNewConsole.class,Console.class,ExpressionType.SIMPLE,"[a] new console facing (0好orth|1圯ast|2安est|3存outh) at %location% with [width] %number%[ and|,] [height] %number%");
+		Classes.registerClass(new ClassInfo<Console>(Console.class, "console")
+				.name("console").parser(new Parser<Console>() {
+					@Override
+					@Nullable
+					public Console parse(String s, ParseContext context) {
+						return null;
+					}
+					@Override
+					public String toString(Console c, int flags) {
+						return null;
+					}
+					@Override
+					public String toVariableNameString(Console c) {
+						return null;
+					}
+					@Override
+					public String getVariableNamePattern() {
+						return ".+";
+					}
+				}));
+		Skript.registerEffect(EffSetPixel.class, "set pixel at [x][ ]%number%[,] [y][ ]%number% to [color] %number% on [console] %console%");
+		Skript.registerEffect(EffUpdateConsole.class, "update [console] %console%");
+		Skript.registerEffect(EffRemoveConsole.class, "remove [console] %console%");
+		Skript.registerEffect(EffSetBackConsole.class, "set background of %console% to [color] %number%");
+		Skript.registerEffect(EffImageConsole.class, "render image from (0各RL|1刎ILE) %string% on [to] %console%", "render image from (0各RL|1刎ILE) %string% on [to] %console% starting at %number% %number%");
+		Skript.registerEffect(EffGIFConsole.class, "render gif [image] from (0各RL|1刎ILE) %string% on [to] %console%", "render gif [image] from (0各RL|1刎ILE) %string% on [to] %console% starting at %number%[,] %number%");
+		Skript.registerEffect(EffDrawText.class, "(render|draw) text %string% on [console] %console% with [color] %number%", "(render|draw) text %string% on [console] %console% with [color] %number% starting at %number% %number%");
+		Skript.registerEffect(EffDrawLine.class, "(render|draw) line from [x][ ]%number%[,] [y][ ]%number% to [x][ ]%number%[,] [y][ ]%number% with color %number% on [console] %console%");
 	}
 }
 
