@@ -9,7 +9,8 @@
 	<classpathentry kind="lib" path="C:/Users/Andrew Tran/Desktop/Minecraft/Servers/188 - SkKUNITY/plugins/mcMMO.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Andrew Tran/Desktop/Minecraft/Servers/188 - SkKUNITY/plugins/Nametags.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Andrew Tran/Desktop/Minecraft/Servers/188 - SkKUNITY/consoles-api-1.2.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Users/Andrew Tran/Desktop/Minecraft/Servers/188 - SkKUNITY/plugins/Skript2.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Andrew Tran/Desktop/Minecraft/Servers/1.9 - SKUNITY/spigot.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

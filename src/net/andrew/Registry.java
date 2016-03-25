@@ -48,6 +48,8 @@ import net.andrew.expressions.random.ExprHastebin;
 import net.andrew.expressions.random.ExprIWItemFrame;
 import net.andrew.expressions.random.ExprLastOutput;
 import net.andrew.expressions.random.ExprTPS;
+import net.andrew.minigames.EffCustomMinigameOptions;
+import net.andrew.minigames.MinigameOption;
 import xyz.flarereturns.nametags.api.API;
 import xyz.flarereturns.nametags.api.Nametags;
 
@@ -173,6 +175,9 @@ public class Registry {
 		Skript.registerEffect(EffGIFConsole.class, "render gif [image] from (0¦URL|1¦FILE) %string% on [to] %console%", "render gif [image] from (0¦URL|1¦FILE) %string% on [to] %console% starting at %number%[,] %number%");
 		Skript.registerEffect(EffDrawText.class, "(render|draw) text %string% on [console] %console% with [color] %number%", "(render|draw) text %string% on [console] %console% with [color] %number% starting at %number% %number%");
 		Skript.registerEffect(EffDrawLine.class, "(render|draw) line from [x][ ]%number%[,] [y][ ]%number% to [x][ ]%number%[,] [y][ ]%number% with color %number% on [console] %console%");
+	}
+	public static void minigame(){
+		Skript.registerEffect(EffCustomMinigameOptions.class, MinigameOption.getSyntaxes());
 	}
 }
 
