@@ -50,6 +50,9 @@ import net.andrew.expressions.random.ExprLastOutput;
 import net.andrew.expressions.random.ExprTPS;
 import net.andrew.minigames.EffCustomMinigameOptions;
 import net.andrew.minigames.MinigameOption;
+import net.andrew.switches.ConSwitch;
+import net.andrew.switches.ConSwitchCompare;
+import net.andrew.switches.ExprTest;
 import xyz.flarereturns.nametags.api.API;
 import xyz.flarereturns.nametags.api.Nametags;
 
@@ -178,6 +181,11 @@ public class Registry {
 	}
 	public static void minigame(){
 		Skript.registerEffect(EffCustomMinigameOptions.class, MinigameOption.getSyntaxes());
+	}
+	public static void switches(){
+		Skript.registerExpression(ExprTest.class, String.class, ExpressionType.SIMPLE, "test");
+		Skript.registerCondition(ConSwitch.class, "switch %string%", "switch %number%");
+		Skript.registerCondition(ConSwitchCompare.class, "case %string%", "case %number%");
 	}
 }
 

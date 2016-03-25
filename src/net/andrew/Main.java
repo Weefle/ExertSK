@@ -45,6 +45,7 @@ public class Main extends JavaPlugin{
 			Registry.SkriptBook();
 			Registry.Random();
 			Registry.minigame();
+			Registry.switches();
 			getServer().getPluginManager().registerEvents(new MinigameListener(), this);
 			Plugin mcMMO = Bukkit.getServer().getPluginManager().getPlugin("mcMMO");
 			Plugin NameTags = Bukkit.getServer().getPluginManager().getPlugin("Nametags");
