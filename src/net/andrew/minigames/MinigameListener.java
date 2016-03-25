@@ -10,6 +10,7 @@ public class MinigameListener implements Listener{
 	
 	  @EventHandler
 	   public void onHungerDeplete(FoodLevelChangeEvent e) {
+		  if (MinigameOption.getOptionValue("health") != null){
 		  if ((Boolean) MinigameOption.getOptionValue("hunger") == false){
 		  
 			  if (e.getEntity() instanceof Player){
@@ -17,16 +18,18 @@ public class MinigameListener implements Listener{
 				  e.setCancelled(true);
 				  p.setFoodLevel(20);
 			  }
-			  
+		  }
 		  }
 	   }
 	  @EventHandler
 	  public void EntityDamageEvent(EntityDamageEvent e){
-		  if ((Boolean) MinigameOption.getOptionValue("health") == false){
-			  if (e.getEntity() instanceof Player){
-				  Player p = (Player) e.getEntity();
-				  e.setCancelled(true);
-				  p.setHealth(20);
+		  if (MinigameOption.getOptionValue("health") != null){
+			  if ((Boolean) MinigameOption.getOptionValue("health") == false){
+				  if (e.getEntity() instanceof Player){
+					  Player p = (Player) e.getEntity();
+					  e.setCancelled(true);
+					  p.setHealth(20);
+				  }
 			  }
 		  }
 	  }

@@ -45,11 +45,6 @@ public class MinigameOption {
 	}
 	
 	public static Object getOptionValue(Integer i){
-		if (values[0] == null){
-			for (int i1 = 0; i1 < values.length; i1 += 1) {
-			    values[i1] = false;
-			} 
-		}
 		return values[i];
 	}
 	
