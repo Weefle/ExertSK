@@ -25,9 +25,10 @@ public class ExprIWItemFrame extends SimpleExpression<ItemStack>{
 		return true;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult arg3) {
-		iframe = (Expression<Entity>) iframe;
+		iframe = (Expression<Entity>) expr[0];
 		return true;
 	}
 

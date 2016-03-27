@@ -35,6 +35,7 @@ import net.andrew.effects.random.EffForceRespawn;
 import net.andrew.effects.random.EffLeashFence;
 import net.andrew.effects.random.EffServerCommand;
 import net.andrew.effects.random.EffSetSpectateTarget;
+import net.andrew.expressions.book.ExprAddBlankPages;
 import net.andrew.expressions.book.ExprBookAuthor;
 import net.andrew.expressions.book.ExprBookPages;
 import net.andrew.expressions.book.ExprBookSpecificPage;
@@ -68,6 +69,7 @@ public class Registry {
 		Skript.registerExpression(ExprBookPages.class, String.class, ExpressionType.PROPERTY, "[all] pages of %itemstack%", "%itemstack%'s [full] pages");
 		Skript.registerExpression(ExprBookSpecificPage.class, String.class, ExpressionType.PROPERTY, "page %integer% of %itemstack%");
 		Skript.registerExpression(ExprBookAuthor.class, String.class, ExpressionType.PROPERTY, "[book] author of %itemstack%", "%itemstack%'s [book] author");
+		Skript.registerEffect(ExprAddBlankPages.class, "add %integer% page[s] to %itemstack%");
 	}
 	public static void mcMMO(Plugin mcMMO) {
 		mcMMO.getLogger().info("Found ExterSK! Hello ExterSK!");
