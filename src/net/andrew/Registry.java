@@ -21,6 +21,7 @@ import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import net.andrew.effects.consoles.EffSetPixel;
+import net.andrew.conditions.random.ConWebStatus;
 import net.andrew.effects.consoles.EffDrawLine;
 import net.andrew.effects.consoles.EffDrawText;
 import net.andrew.effects.consoles.EffGIFConsole;
@@ -68,7 +69,6 @@ public class Registry {
 		Skript.registerExpression(ExprBookSpecificPage.class, String.class, ExpressionType.PROPERTY, "page %integer% of %itemstack%");
 		Skript.registerExpression(ExprBookAuthor.class, String.class, ExpressionType.PROPERTY, "[book] author of %itemstack%", "%itemstack%'s [book] author");
 	}
-	
 	public static void mcMMO(Plugin mcMMO) {
 		mcMMO.getLogger().info("Found ExterSK! Hello ExterSK!");
 		//SKILL LEVEL GET
@@ -143,6 +143,7 @@ public class Registry {
 		Skript.registerExpression(ExprTPS.class, Number.class, ExpressionType.SIMPLE, "[exter] [server] tps");
 		Skript.registerExpression(ExprHastebin.class, String.class, ExpressionType.PROPERTY, "[new] hastebin (key|identifier) (for|of) [text|string] %string%", "[new] hastebin URL (for|of) [text|string] %string%");
 		Skript.registerExpression(ExprIWItemFrame.class, ItemStack.class, ExpressionType.SIMPLE, "[exert] item [with]in %entity%");
+		Skript.registerCondition(ConWebStatus.class, "[web status of ]%string% is (online|working|not offline|good|not bad|not 404|not down)");
 		Skript.registerEffect(EffChatImageFromURL.class, "send %players% [chat] image from url %string% with height %integer%[,] shade %integer%", "send %players% [chat] image from url %string% with height %integer%[,] shade %integer% with extra texts %strings%");
 		Skript.registerEffect(EffChatImageFromFILE.class, "send %players% [chat] image from file %string% with height %integer%[,] shade %integer%", "send %players% [chat] image from file %string% with height %integer%[,] shade %integer% with extra texts %strings%");
 		Skript.registerEffect(EffLeashFence.class, "(leash|lead) %livingentities% to %block%");

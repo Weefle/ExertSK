@@ -65,7 +65,7 @@ public class MinigameOption {
 					List<World> worlds = Bukkit.getWorlds();
 					for (World w : worlds){
 						w.setTime(5000);
-						w.setGameRuleValue("doDaylightCycle", ((Boolean) v).toString());
+						w.setGameRuleValue("doDaylightCycle", "false");
 					}
 				}
 				break;
@@ -74,7 +74,7 @@ public class MinigameOption {
 					List<World> worlds = Bukkit.getWorlds();
 					for (World w : worlds){
 						w.setTime(15000);
-						w.setGameRuleValue("doDaylightCycle", ((Boolean) v).toString());
+						w.setGameRuleValue("doDaylightCycle", "false");
 					}
 				}
 				break;
