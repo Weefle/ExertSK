@@ -61,7 +61,6 @@ public class ExprXPLevel extends SimpleExpression<Integer>{
 			ExperienceAPI.addLevel(player.getSingle(e), skill.getSingle(e).getName(), i2);
 		}
 	}
-	@SuppressWarnings("unchecked")
 	@Override
 	public Class<?>[] acceptChange(final Changer.ChangeMode mode) {
 		if (mode == ChangeMode.SET || mode == ChangeMode.ADD)

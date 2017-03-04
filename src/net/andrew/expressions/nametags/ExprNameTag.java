@@ -74,7 +74,6 @@ public class ExprNameTag extends SimpleExpression<String>{
 			}
 		}
 	}
-	@SuppressWarnings("unchecked")
 	@Override
 	public Class<?>[] acceptChange(final Changer.ChangeMode mode) {
 		if (mode == ChangeMode.SET)

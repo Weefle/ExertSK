@@ -51,7 +51,6 @@ public class ExprBookSpecificPage extends SimpleExpression<String>{
 			item.getSingle(e).setItemMeta(book);
 		}
 	}
-	@SuppressWarnings("unchecked")
 	@Override
 	public Class<?>[] acceptChange(final Changer.ChangeMode mode) {
 		if (mode == ChangeMode.SET || mode == ChangeMode.DELETE)

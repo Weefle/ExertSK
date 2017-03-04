@@ -40,7 +40,6 @@ public class ExprMapID extends SimpleExpression<Integer>{
 			item.getSingle(e).setDurability((short) (current.shortValue() + ((Integer) delta[0]).shortValue()));
 		}
 	}
-	@SuppressWarnings("unchecked")
 	@Override
 	public Class<?>[] acceptChange(final Changer.ChangeMode mode) {
 		if (mode == ChangeMode.SET || mode == ChangeMode.ADD)
